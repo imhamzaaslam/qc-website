@@ -282,10 +282,10 @@
   <div class="custom-modal-content">
     <span class="custom-modal-close">&times;</span>
     <div class="row">
-      <div class="col-md-6">
+      <!-- <div class="col-md-6">
           <img id="modalImage" src="" alt="Project Image" class="img-fluid rounded w-100 mb-3" style="min-height: 300px; object-fit: cover;">
-      </div>
-      <div class="col-md-6 d-flex flex-column position-relative">
+      </div> -->
+      <div class="col-md-12 d-flex flex-column position-relative">
           <h5 id="modalTitle" class="fw-bold mb-2 fs-2 modal-title"></h5>
           <p class="modal-client"><strong>Client:</strong> <span id="modalClient" class="text-primary"></span></p>
           <p id="modalDesc" class="mt-2 modal-description text-justify"></p>

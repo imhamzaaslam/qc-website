@@ -139,7 +139,7 @@
                     document.getElementById('modalTitle').textContent = button.dataset.title;
                     document.getElementById('modalClient').textContent = button.dataset.client;
                     document.getElementById('modalDesc').textContent = button.dataset.desc;
-                    document.getElementById('modalImage').src = button.dataset.image;
+                    // document.getElementById('modalImage').src = button.dataset.image;
                     const link = button.dataset.link;
                     document.getElementById('modalLink').innerHTML = link
                         ? `<a href="${link}" target="_blank" class="btn btn-sm btn-primary py-2 px-3 rounded fs-5">🔗 Visit Project</a>` : '';
