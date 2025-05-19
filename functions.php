@@ -1,8 +1,9 @@
 <?php 
 	function getSiteConfig() {
 		return [
-			'site_name'    => 'Quality Clix',
+			'site_name'    => 'QualityClix',
 			'logo_url' => 'images/logo.png',
+			'white_logo_url' => 'images/white-logo.png',
 			'site_phone'   => '(+92)-307-5168860',
 			'site_address' => 'Office # 18, 4th floor Mall of sargodha, Sargodha, Pakistan',
 			'site_email'   => 'info@qualityclix.com',
@@ -14,6 +15,7 @@
 				'email'    => 'mailto:info@qualityclix.com',
 			],
 		];
+		
 	}
 	function getServices() {
 		return [
@@ -82,21 +84,21 @@
 	}	
 	function getProjects() {
 		return [
-			[
+            [
 				'title' => 'Online Food Ordering',
 				'desc' => 'An intuitive online food ordering system built for restaurants to manage menus, orders, and payments efficiently.',
 				'skills' => ['HTML5', 'CSS3', 'PHP', 'MySQL', 'Bootstrap'],
 				'client' => 'Mr. Herry Thompson',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/Food/food.png',
 				'link' => '#',
 			],
 			[
 				'title' => 'YooConnect',
-				'desc' => 'YooConnect is an application where Admins create online questionnaires and then required users (within that specific Admin jurisdiction) are asked to answer those questionnaires. Users answer those questionnaires and then later on a legal document can be formed and downloaded using the answers the users have provided.
-					This application is specifically developed for lawyers and lawyers firms. Answers provided by users are used in uploaded Word document templates of legal documents, once the required questionnaires are complete that legal document is allowed to be downloaded.',
+				'desc' => 'YooConnect is an application where Admins create online questionnaires and then required users are asked to answer those questionnaires. Users answer those questionnaires and then later on a legal document can be formed and downloaded using the answers the users have provided.
+					This application is specifically developed for lawyers firms. Answers provided by users are used in uploaded Word document templates of legal documents, once the required questionnaires are complete that legal document is allowed to be downloaded.',
 				'skills' => ['HTML5', 'CSS3', 'PHP', 'Laravel', 'JavaScript', 'MySQL'],
 				'client' => 'John Doe (Law Firm)',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/YooConnect/yoo.png',
 				'link' => '#',
 			],
 			[
@@ -109,10 +111,10 @@
 			],
 			[
 				'title' => 'Show Me The Rental',
-				'desc' => 'A real estate leads system connecting tenants with property managers and landlords via multi-channel listings.',
+				'desc' => 'SMTR is a lead based application where home owners and property managers add their listings and then leads (renters) contacts them from different means (from website, direct link, email or from other property website feeds). Applications can be submitted for listings, after the proper procedure (verification and payment from SMTR website) the applications are submitted to owners or managers.',
 				'skills' => ['React', 'Firebase', 'Bootstrap', 'HTML5', 'CSS3'],
 				'client' => 'SMTR Group',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/Rental/rental.png',
 				'link' => '#',
 			],
 			[
@@ -120,15 +122,16 @@
 				'desc' => 'IT consulting and software development firm website showcasing services, projects, and technology stack.',
 				'skills' => ['Next.js', 'Tailwind CSS', 'JavaScript', 'React'],
 				'client' => 'Brother & Brother Ltd.',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/brother/brother.png',
 				'link' => '#',
 			],
 			[
 				'title' => 'ERP Web Application',
-				'desc' => 'Comprehensive ERP system managing accounting, HR, inventory, student/course modules, and more for enterprises.',
+				'desc' => 'ERP Web Application is designed to automate an organizations various operations, it supports the organization in organizing all its financial and management needs at one system where all the stakeholders are connectedIt contains different modules e.g. Accounts, Procurement, Inventory, Employee management and payroll, Student and course management, Transport management, Petrol pump module, Real Estate, Budget, Contact center.
+                    Its main objective is to provide Right Information to Right People at Right Time for decision making and controlling.',
 				'skills' => ['Vue.js', 'Laravel', 'MySQL', 'JavaScript', 'Bootstrap'],
 				'client' => 'Al-Huda Group',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/ERP/ERP.png',
 				'link' => '#',
 			],
 			[
@@ -136,7 +139,7 @@
 				'desc' => 'A hiking and adventure booking site showcasing trails, services, and online booking capabilities.',
 				'skills' => ['WordPress', 'Elementor', 'HTML5', 'CSS3'],
 				'client' => 'TrailBlazers Inc.',
-				'image' => 'images/projects/1/1.png',
+				'image' => 'images/projects/hiking/hiking.png',
 				'link' => '#',
 			],
 			[
@@ -144,9 +147,9 @@
 				'desc' => 'A custom backend solution for managing internal workflows and automating repetitive tasks for a logistics company.',
 				'skills' => ['PHP', 'Laravel', 'MySQL', 'jQuery'],
 				'client' => 'Pancemaster Logistics',
-				'image' => 'images/projects/phocus/phocus.png',
+				'image' => 'images/projects/pancemaster/pancemaster.png',
 				'link' => '#',
 			],
-		];
+        ];
 	}
 ?>

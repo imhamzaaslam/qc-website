@@ -37,7 +37,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3 margin-bottom-25">
                         <h1><?php echo htmlspecialchars($config['site_name']); ?></h1>
-                        <img src="<?php echo htmlspecialchars($config['logo_url']); ?>" alt="Logo" style="max-height: 150px; width: auto;" loading="lazy">
+                        <img src="<?php echo htmlspecialchars($config['white_logo_url']); ?>" alt="Logo" style="max-height: 150px; width: auto;" loading="lazy">
                     </div>
                     <div class="col-md-3 col-sm-3 margin-bottom-25">
                         <h1>Hot Links</h1>
@@ -118,68 +118,50 @@
         </script>
         <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script>
-            const swiper = new Swiper('.mySwiper', {
+            new Swiper(".mySwiper", {
                 slidesPerView: 1,
                 spaceBetween: 30,
-                loop: true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
+                pagination: { el: ".swiper-pagination", clickable: true },
                 navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev"
                 },
                 breakpoints: {
                     640: { slidesPerView: 1 },
                     768: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                },
+                    1024: { slidesPerView: 3 }
+                }
             });
-        </script>
-        <script>
-            document.querySelectorAll('.swiper-slide').forEach(slide => {
-                slide.addEventListener('click', () => {
-                    const modal = document.getElementById('projectModal');
-                    document.getElementById('modalImage').src = slide.dataset.image;
-                    document.getElementById('modalTitle').textContent = slide.dataset.title;
-                    document.getElementById('modalClient').textContent = slide.dataset.client;
-                    document.getElementById('modalDesc').textContent = slide.dataset.desc;
-                    const link = slide.dataset.link;
-                    document.getElementById('modalLink').innerHTML = link ? 
-                    `<a href="${link}" target="_blank">🔗 View Project</a>` : '';
-
+            const modal = document.getElementById('customModal');
+            const closeBtn = document.querySelector('.custom-modal-close');
+            document.querySelectorAll('.openCustomModal').forEach(button => {
+                button.addEventListener('click', () => {
+                    document.getElementById('modalTitle').textContent = button.dataset.title;
+                    document.getElementById('modalClient').textContent = button.dataset.client;
+                    document.getElementById('modalDesc').textContent = button.dataset.desc;
+                    document.getElementById('modalImage').src = button.dataset.image;
+                    const link = button.dataset.link;
+                    document.getElementById('modalLink').innerHTML = link
+                        ? `<a href="${link}" target="_blank" class="btn btn-sm btn-primary py-2 px-3 rounded fs-5">🔗 Visit Project</a>` : '';
+                    const skills = JSON.parse(button.dataset.skills || '[]');
                     const skillsContainer = document.getElementById('modalSkills');
                     skillsContainer.innerHTML = '';
-                    const skills = JSON.parse(slide.dataset.skills);
                     skills.forEach(skill => {
                         const span = document.createElement('span');
+                        span.className = 'badge bg-primary rounded-pill text-white';
                         span.textContent = skill;
                         skillsContainer.appendChild(span);
                     });
-                    modal.style.display = 'block';
+                    modal.style.display = 'flex';
                 });
             });
-            document.querySelector('.close').onclick = () => {
-                document.getElementById('projectModal').style.display = 'none';
-            };
-            window.onclick = event => {
-                if (event.target.id === 'projectModal') {
-                    document.getElementById('projectModal').style.display = 'none';
+            closeBtn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            window.addEventListener('click', e => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
                 }
-            };
-        </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const showAllBtn = document.getElementById('showAllBtn');
-                const allTestimonials = document.getElementById('allTestimonials');
-
-                showAllBtn.addEventListener('click', function () {
-                allTestimonials.classList.toggle('d-none');
-                showAllBtn.textContent = allTestimonials.classList.contains('d-none') 
-                    ? 'View All Testimonials' 
-                    : 'Hide Testimonials';
-                });
             });
         </script>
     </body>

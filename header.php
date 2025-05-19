@@ -1,8 +1,8 @@
 <?php 
 $config = getSiteConfig();
-$site_name_parts = explode(' ', htmlspecialchars($config['site_name']));
-$first_word = $site_name_parts[0] ;
-$second_word = $site_name_parts[1] ;
+preg_match('/^([A-Z][a-z]+)([A-Z].*)$/', htmlspecialchars($config['site_name']), $matches);
+$first_word  = isset($matches[1]) ? $matches[1] : htmlspecialchars($config['site_name']);
+$second_word = isset($matches[2]) ? $matches[2] : '';
 ?>
 <!doctype html>
 <html>
@@ -58,8 +58,7 @@ $second_word = $site_name_parts[1] ;
                                     class="logo-img"
                                     srcset="<?= $config['logo_url']; ?> 1x, <?= $config['logo_url']; ?> 2x">
                                 <span class="logo-text" style="font-weight: bold; white-space: nowrap;">
-                                    <span style="color: #2d1d5d;"><?= $first_word ?></span>
-                                    <span style="color: #747474;"> <?= $second_word ?></span>
+                                    <span style="color: #2d1d5d;"><?= $first_word ?></span><span style="color: #747474;"><?= $second_word ?></span>
                                 </span>
                             </a>
                         </div>

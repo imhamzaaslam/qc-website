@@ -193,85 +193,78 @@
 </section>
 <!-----End whyUs----->
 <!------TESTIMONIALS------>
-<section id="testimonials-layout">
-  <div class="container">
-    <h1>WHAT DO <span>OUR CLIENTS</span> SAY?</h1>
-    <div id="testimonialCarousel" class="carousel slide" data-ride="carousel">
-      <div class="carousel-inner text-center">
-        <?php
-          $testimonials = getTestimonials();
-          $active = true; 
-          foreach ($testimonials as $testimonial):
-        ?>
-          <div class="carousel-item <?php echo $active ? 'active' : ''; ?>">
-            <div class="client-img" style="background: url('<?php echo htmlspecialchars($testimonial['image_url']); ?>') center/cover; border-radius: 100%; width: 80px; height: 80px; margin: 0 auto;"></div>
-            <p>"<?php echo htmlspecialchars($testimonial['feedback']); ?>"</p>
-            <h5>-- <?php echo htmlspecialchars($testimonial['name']); ?> --</h5>
-          </div>
-        <?php
-          $active = false; 
-          endforeach;
-        ?>
-      </div>
-      <a class="carousel-control-prev" href="#testimonialCarousel" role="button" data-slide="prev">
-        <i class="fa fa-chevron-left fa-2x"></i>
-      </a>
-      <a class="carousel-control-next" href="#testimonialCarousel" role="button" data-slide="next">
-        <i class="fa fa-chevron-right fa-2x"></i>
-      </a>
-    </div>
-    <div class="text-center mt-4">
-      <button id="showAllBtn" class="btn btn-outline-primary">View All Testimonials</button>
-    </div>
-    <div id="allTestimonials" class="row mt-4 d-none">
-      <?php
-        foreach ($testimonials as $testimonial):
-      ?>
-        <div class="col-md-4 mb-4">
-          <div class="testimonial-item p-3 border rounded text-center">
-            <div class="client-img" style="background: url('<?php echo htmlspecialchars($testimonial['image_url']); ?>') center/cover; border-radius: 100%; width: 80px; height: 80px; margin: 0 auto;"></div>
-            <p>"<?php echo htmlspecialchars($testimonial['feedback']); ?>"</p>
-            <h6 class="text-white">-- <?php echo htmlspecialchars($testimonial['name']); ?> --</h6>
-          </div>
+<section id="testimonials-layout" class="bg-light py-5">
+    <div class="container text-center">
+        <h1 class="text-3xl fw-bold mb-5">WHAT DO <span class="text-primary">OUR CLIENTS</span> SAY?</h1>
+        <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <?php
+                    $testimonials = getTestimonials();
+                    $active = true;
+                    foreach ($testimonials as $testimonial):
+                ?>
+                    <div class="carousel-item <?= $active ? 'active' : '' ?>">
+                        <div class="d-flex flex-column align-items-center">
+                            <div class="client-img mb-4" style="background: url('<?= htmlspecialchars($testimonial['image_url']) ?>') center/cover; border-radius: 50%; width: 80px; height: 80px;"></div>
+                            <p class="text-white fst-italic mb-3">"<?= htmlspecialchars($testimonial['feedback']) ?>"</p>
+                            <h5 class="fw-semibold">-- <?= htmlspecialchars($testimonial['name']) ?> --</h5>
+                        </div>
+                    </div>
+                <?php
+                    $active = false;
+                    endforeach;
+                ?>
+            </div>
+            <!-- Carousel Controls -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-      <?php endforeach; ?>
     </div>
-  </div>
 </section>
 <!----- End testimonials----->
 <!-----Start Portfolio----->
-<section id="portfolio-layout">
-  <div class="container-fluid">
+<section id="portfolio-layout" class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold display-5">Our Featured Projects</h2>
+      <p class="text-muted">Take a look at our latest work and amazing collaborations.</p>
+    </div>
     <div class="swiper mySwiper">
       <div class="swiper-wrapper">
         <?php foreach (getProjects() as $project): ?>
-          <div class="swiper-slide" 
-            data-title="<?= htmlspecialchars($project['title']) ?>"
-            data-client="<?= htmlspecialchars($project['client']) ?>"
-            data-desc="<?= htmlspecialchars($project['desc']) ?>"
-            data-image="<?= htmlspecialchars($project['image']) ?>"
-            data-link="<?= htmlspecialchars($project['link']) ?>"
-            data-skills='<?= json_encode($project['skills']) ?>'>
-            <div class="project-card">
-              <source srcset="<?= str_replace('.png', '@2x.png', $project['image']) ?>" media="(min-width: 768px)">
-              <img
-                src="<?= $project['image'] ?>" alt="<?= htmlspecialchars($project['title']) ?>"
-                loading="lazy" width="600" height="400" class=" rounded-lg shadow-lg w-full object-cover"/>
-              <div class="project-info">
-                <h3><?= $project['title'] ?></h3>
-                <p><strong>Client:</strong> <?= $project['client'] ?></p>
-                <p><?= strlen($project['desc']) > 120 ? substr($project['desc'], 0, 120) . '...' : $project['desc'] ?></p>
-                <?php if (!empty($project['link'])): ?>
-                  <p>
-                    <a href="<?= htmlspecialchars($project['link']) ?>" target="_blank" class="view-project-link">
-                      🔗 View Project
-                    </a>
-                  </p>
-                <?php endif; ?>
-                <div class="skills">
+          <div class="swiper-slide">
+            <div class="card shadow-sm h-100 border-0 p-4">
+              <div class="card-body d-flex flex-column">
+                <h5 class="card-title text-center fw-semibold mb-4" style="font-size: 1.5rem;">
+                  <?= htmlspecialchars($project['title']) ?>
+                </h5>
+                <p class="card-text text-dark mb-3" style="font-size: 1.5rem; line-height: 1.6;">
+                  <?= strlen($project['desc']) > 120 ? substr($project['desc'], 0, 120) . '...' : $project['desc'] ?>
+                </p>
+                <p class="mb-3" style="font-size: 1.5rem;">
+                  <strong>Client:</strong> <?= htmlspecialchars($project['client']) ?>
+                </p>
+                <div class="skills mb-4">
                   <?php foreach ($project['skills'] as $skill): ?>
-                      <span><?= $skill ?></span>
+                    <span class="badge bg-primary text-white"><?= htmlspecialchars($skill) ?></span>
                   <?php endforeach; ?>
+                </div>
+                <div class="mt-auto text-end">
+                  <button class="btn btn-outline-primary btn-sm px-3 py-2 openCustomModal"
+                          data-title="<?= htmlspecialchars($project['title']) ?>"
+                          data-client="<?= htmlspecialchars($project['client']) ?>"
+                          data-desc="<?= htmlspecialchars($project['desc']) ?>"
+                          data-image="<?= htmlspecialchars($project['image']) ?>"
+                          data-link="<?= htmlspecialchars($project['link']) ?>"
+                          data-skills='<?= json_encode($project['skills']) ?>'>
+                    <i class="fa fa-eye me-1"></i> Preview
+                  </button>
                 </div>
               </div>
             </div>
@@ -280,69 +273,75 @@
       </div>
       <div class="swiper-button-next"></div>
       <div class="swiper-button-prev"></div>
-      <div class="swiper-pagination"></div>
-    </div>
-    <!-- Modal for Projects -->
-    <div id="projectModal" class="modal" aria-hidden="true">
-      <div class="modal-content">
-        <div class="modal-body">
-          <div class="modal-image">
-            <img id="modalImage" sizes="(max-width: 768px) 480px, 800px" loading="lazy" class="w-full h-auto object-cover"/>
-          </div>
-          <div class="modal-text">
-            <span class="close" aria-label="Close">&times;</span>
-            <h3 id="modalTitle"></h3>
-            <p><strong>Client:</strong> <span id="modalClient"></span></p>
-            <p id="modalDesc"></p>
-            <p id="modalLink"></p>
-            <div id="modalSkills" class="skills"></div>
-          </div>
-        </div>
-      </div>
+      <div class="swiper-pagination mt-3"></div>
     </div>
   </div>
 </section>
-<!-----End Portfolio----->
-<!-----Start Contact----->
-<section id="contact-layout">
-	<div class="container">
+<!-- Projects Modal -->
+<div id="customModal" class="custom-modal">
+  <div class="custom-modal-content">
+    <span class="custom-modal-close">&times;</span>
     <div class="row">
-      <div class="col-md-6 col-sm-6 margin-bottom-25">
-        <h1 class="margin-bottom-35">Contact Information</h1>
-        <p><i class="fa fa-map-marker"></i> <?= getSiteConfig()['site_address'] ?></p>
-        <p><i class="fa fa-phone"></i> <?= getSiteConfig()['site_phone'] ?></p>
-        <p><i class="fa fa-envelope"></i> <a href="mailto:<?= getSiteConfig()['site_email'] ?>"><?= getSiteConfig()['site_email'] ?></a></p>
-        <div class="contact-social">
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-google-plus"></i></a>
-            <a href="#"><i class="fa fa-rss"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-envelope-o"></i></a>
-        </div>
+      <div class="col-md-6">
+          <img id="modalImage" src="" alt="Project Image" class="img-fluid rounded w-100 mb-3" style="min-height: 300px; object-fit: cover;">
       </div>
-      <div class="col-md-6 col-sm-6 margin-bottom-25">
-        <h1 class="margin-bottom-35">Get In Touch</h1>
-        <div class="form_attribute">
-          <form action="#" method="post" class="use-floating-validation-tip">
-            <div class="form-group mb-3">
-              <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required />
-            </div>
-            <div class="form-group mb-3">
-              <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required />
-            </div>
-            <div class="form-group mb-3">
-              <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" />
-            </div>
-            <div class="form-group mb-3">
-              <textarea id="message" name="message" rows="5" class="form-control" placeholder="Your Message" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">Send Message</button>
-          </form>
-        </div>
+      <div class="col-md-6 d-flex flex-column position-relative">
+          <h5 id="modalTitle" class="fw-bold mb-2 fs-2 modal-title"></h5>
+          <p class="modal-client"><strong>Client:</strong> <span id="modalClient" class="text-primary"></span></p>
+          <p id="modalDesc" class="mt-2 modal-description text-justify"></p>
+          <div id="modalSkills" class="skills mt-3 mb-3"></div>
+          <div id="modalLink">Visit Project</div>
       </div>
     </div>
   </div>
+</div>
+<!-----End Portfolio----->
+<!-----Start Contact----->
+<section id="contact-layout" class="py-16 bg-white">
+    <div class="container">
+        <div class="row">
+            <!-- Contact Info -->
+            <div class="col-md-6 col-sm-6 mb-4">
+                <h1 class="mb-4">Contact Information</h1>
+                <p><i class="fa fa-map-marker"></i> <?= getSiteConfig()['site_address'] ?></p>
+                <p><i class="fa fa-phone"></i> <?= getSiteConfig()['site_phone'] ?></p>
+                <p><i class="fa fa-envelope"></i> 
+                    <a href="mailto:<?= getSiteConfig()['site_email'] ?>"><?= getSiteConfig()['site_email'] ?></a>
+                </p>
+                <div class="contact-social mt-3">
+                    <a href="#"><i class="fa fa-twitter"></i></a>
+                    <a href="#"><i class="fa fa-facebook"></i></a>
+                    <a href="#"><i class="fa fa-google-plus"></i></a>
+                    <a href="#"><i class="fa fa-rss"></i></a>
+                    <a href="#"><i class="fa fa-instagram"></i></a>
+                    <a href="#"><i class="fa fa-envelope-o"></i></a>
+                </div>
+            </div>
+            <!-- Contact Form -->
+            <div class="col-lg-6 col-md-12 mb-4 d-flex align-items-center justify-content-center">
+                <form action="#" method="POST" class="w-100 p-4 border rounded bg-light shadow-sm" style="max-width: 500px; margin: 0 auto;">
+                    <h2 class="mb-3 fw-bold fs-2" style="color:#2D728B !important">Get In Touch</h2>
+                    <div class="mb-2">
+                        <input type="text" name="name" class="form-control form-control-sm" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" name="email" class="form-control form-control-sm" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="text" name="subject" class="form-control form-control-sm" placeholder="Subject">
+                    </div>
+                    <div class="mb-3">
+                        <textarea name="message" class="form-control" placeholder="Your Message" required style="resize: none; height: 70px !important;"></textarea>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button type="submit" class="btn btn-primary btn-sm px-4 py-3 fs-5">
+                            <i class="fa fa-paper-plane me-2"></i>Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </section>
 <!-----End contact----->
 <?php
